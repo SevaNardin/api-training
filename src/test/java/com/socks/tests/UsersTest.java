@@ -6,7 +6,7 @@ package com.socks.tests;
 public class UsersTest {
 
     void testCanRegisterNewUser() {
-        System.out.println("Test");
+
 
     }
 }
