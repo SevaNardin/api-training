@@ -9,10 +9,11 @@ import lombok.RequiredArgsConstructor;
  */
 @RequiredArgsConstructor
 public class AssertableResponse {
-    private final Response register;
+    private final Response response;
     // что хотим проверить при ответе
-    public void shouldHave(Condition condition) {
-
+    public AssertableResponse shouldHave(Condition condition) {
+        condition.check(response);
+        return this;
     }
 
     // ломбок автоматически сгенрит конструтктор
