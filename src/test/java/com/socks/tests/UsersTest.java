@@ -1,10 +1,11 @@
 package com.socks.tests;
 
 import com.github.javafaker.Faker;
+import com.socks.api.ProjectConfig;
 import com.socks.api.conditions.Conditions;
 import com.socks.api.payloads.UserPayload;
 import com.socks.api.services.UserApiService;
-import io.restassured.RestAssured;
+import org.aeonbits.owner.ConfigFactory;
 import org.hamcrest.Matcher;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -19,11 +20,16 @@ import static org.hamcrest.Matchers.isEmptyOrNullString;
  */
 public class UsersTest {
     private final UserApiService userApiService = new UserApiService();
-    private final Faker faker = new Faker(new Locale("ru"));
+//    private final Faker faker = new Faker(new Locale("ru"));
+    private Faker faker;
     private final UserPayload user = new UserPayload();
     @BeforeAll
-    public static void setUp() {
-        RestAssured.baseURI = "http://157.230.26.92/";
+    public void setUp() {
+        // owner читаем конфиги перед тестами
+        ConfigFactory.create(ProjectConfig.class);
+        faker = new Faker(new Locale("ru"));
+
+//        RestAssured.baseURI = "http://157.230.26.92/";
     }
 
     @Test
